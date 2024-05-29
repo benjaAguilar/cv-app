@@ -1,0 +1,71 @@
+.entryArea{
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 80px;
+    line-height: 80px;
+}
+
+.field{
+    position: absolute;
+    max-width: 150px;
+    outline: none;
+    font-size: 1rem;
+    background-color: transparent;
+    outline: none;
+    padding: 0 20px;
+    line-height: 2.2rem;
+    border-radius: 0.5rem;
+    border: 3px solid #ccc;
+    z-index: 1;
+}
+
+.input-label{
+    position: absolute;
+    font-size: 0.8rem;
+    padding: 0 5px;
+    margin-left: 23px;
+    color: #ccc;
+    background-color: aliceblue;
+    font-weight: bold;
+    transition: transform 200ms ease;
+}
+
+.field:focus + .input-label,
+.field:valid + .input-label{
+    transform: translate(-10px, -20px);
+    z-index: 2;
+}
+
+textarea{
+    resize: none;
+    outline: none;
+    padding: 5px;
+    border: 3px solid #ccc;
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+    background-color: white;
+}
+
+.area-detail{
+    background-color: cadetblue;
+    padding: 1rem;
+    border-top-right-radius: 0.75rem;
+    border-top-left-radius: 0.75rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.form-fields{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+    padding: 2rem;
+    border-radius: 0.75rem;
+}
+
+.skill-adder button{
+    min-width: 200px;
+}

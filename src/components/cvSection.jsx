@@ -2,6 +2,8 @@ import { useState } from "react";
 import Contact from "./forms/contact";
 import Summary from "./forms/summary";
 import Skills from "./forms/skills";
+import Work from "./forms/work";
+import Education from "./forms/education";
 
 function CvSection() {
   const [formSection, setFormSection] = useState("contact");
@@ -14,12 +16,10 @@ function CvSection() {
         return <Summary />;
       case "skills":
         return <Skills />;
-      /*
       case "work":
         return <Work />;
-      case "eduation":
+      case "education":
         return <Education />;
-        */
       default:
         break;
     }

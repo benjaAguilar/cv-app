@@ -93,6 +93,51 @@ button:focus-visible {
   grid-template-columns: 1fr 1fr;
 }
 
+.navbar{
+  position: absolute;
+  left: 0;
+  background-color: thistle;
+  border-top-right-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+  z-index: 3;
+  transform-origin: left;
+  transform: scaleX(0.2);
+  transition: transform 300ms ease;
+}
+
+.navbar:hover{
+  transform: scaleX(1);
+}
+
+.navbar:hover .ul-nav{
+  opacity: 1;
+}
+
+.navbar ul{
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.navbar li{
+  list-style: none;
+  cursor: pointer;
+  padding: 2rem;
+}
+
+.navbar li:hover{
+  background-color: cadetblue;
+}
+
+.li-top{
+  border-top-right-radius: 0.75rem;
+}
+
+.li-bottom{
+  border-bottom-right-radius: 0.75rem;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

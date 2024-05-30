@@ -27,13 +27,17 @@ function CvSection() {
 
   return (
     <div className="make-cv">
-      <nav>
-        <ul>
-          <li onClick={() => setFormSection("contact")}>Contact</li>
+      <nav className="navbar">
+        <ul className="ul-nav">
+          <li className="li-top" onClick={() => setFormSection("contact")}>
+            Contact
+          </li>
           <li onClick={() => setFormSection("summary")}>Summary</li>
           <li onClick={() => setFormSection("skills")}>Skills</li>
           <li onClick={() => setFormSection("work")}>Work History</li>
-          <li onClick={() => setFormSection("education")}>Education</li>
+          <li className="li-bottom" onClick={() => setFormSection("education")}>
+            Education
+          </li>
         </ul>
       </nav>
       <div className="formSection">

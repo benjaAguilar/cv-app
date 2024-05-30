@@ -1,4 +1,5 @@
 import { useState } from "react";
+import InputField from "./inputField";
 import { v4 as uuidv4 } from "uuid";
 
 function Skills() {
@@ -27,16 +28,11 @@ function Skills() {
     <div className="form-fields">
       <h2>Skills</h2>
       <div className="skill-adder">
-        <div className="entryArea">
-          <input
-            type="text"
-            className="field"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            required
-          />
-          <div className="input-label">Skills</div>
-        </div>
+        <InputField
+          labelText={"Skills"}
+          value={value}
+          change={(e) => setValue(e.target.value)}
+        />
         <button onClick={addSkill}>Add +</button>
       </div>
       <div className="skill-visualizer">

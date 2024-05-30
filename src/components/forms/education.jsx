@@ -1,3 +1,4 @@
+import InputField from "./inputField";
 import AirDatepicker from "air-datepicker";
 import localeEn from "air-datepicker/locale/en";
 import "air-datepicker/air-datepicker.css";
@@ -58,44 +59,25 @@ function Education() {
     <div className="form-fields">
       <div>
         <h2>School</h2>
-        <div className="entryArea">
-          <input
-            type="text"
-            className="field"
-            value={inputVals.school}
-            onChange={(e) => setVals({ ...inputVals, school: e.target.value })}
-            required
-          />
-          <div className="input-label">School</div>
-        </div>
-        <div className="entryArea">
-          <input type="text" className="field" required />
-          <div className="input-label">School location</div>
-        </div>
+        <InputField
+          labelText={"School"}
+          value={inputVals.school}
+          change={(e) => setVals({ ...inputVals, school: e.target.value })}
+        />
+        <InputField labelText={"School Location"} />
       </div>
       <div>
         <h2>Graduation Date</h2>
-        <div className="entryArea">
-          <input type="text" className="field" ref={endStudy} required />
-          <div className="input-label">Graduation</div>
-        </div>
+        <InputField labelText={"Graduation"} ref={endStudy} />
       </div>
       <div>
         <h2>Degree and field</h2>
-        <div className="entryArea">
-          <input
-            type="text"
-            className="field"
-            value={inputVals.degree}
-            onChange={(e) => setVals({ ...inputVals, degree: e.target.value })}
-            required
-          />
-          <div className="input-label">Degree</div>
-        </div>
-        <div className="entryArea">
-          <input type="text" className="field" required />
-          <div className="input-label">Field of study</div>
-        </div>
+        <InputField
+          labelText={"Degree"}
+          value={inputVals.degree}
+          change={(e) => setVals({ ...inputVals, degree: e.target.value })}
+        />
+        <InputField labelText={"Field of Study"} />
         <button onClick={addEdu}>Add education</button>
       </div>
       <div>

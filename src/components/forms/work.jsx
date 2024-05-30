@@ -1,3 +1,4 @@
+import InputField from "./inputField";
 import AirDatepicker from "air-datepicker";
 import localeEn from "air-datepicker/locale/en";
 import "air-datepicker/air-datepicker.css";
@@ -69,28 +70,16 @@ function Work() {
     <div className="form-fields">
       <div>
         <h2>Job Info</h2>
-        <div className="entryArea">
-          <input
-            type="text"
-            className="field"
-            value={inputVals.job}
-            onChange={(e) => setVals({ ...inputVals, job: e.target.value })}
-            required
-          />
-          <div className="input-label">Job title</div>
-        </div>
-        <div className="entryArea">
-          <input
-            type="text"
-            className="field"
-            value={inputVals.employer}
-            onChange={(e) =>
-              setVals({ ...inputVals, employer: e.target.value })
-            }
-            required
-          />
-          <div className="input-label">Employer</div>
-        </div>
+        <InputField
+          labelText={"Job Title"}
+          value={inputVals.job}
+          change={(e) => setVals({ ...inputVals, job: e.target.value })}
+        />
+        <InputField
+          labelText={"Employer"}
+          value={inputVals.employer}
+          change={(e) => setVals({ ...inputVals, employer: e.target.value })}
+        />
       </div>
       <div>
         <h2>Job Description</h2>
@@ -99,20 +88,8 @@ function Work() {
       </div>
       <div>
         <h2>Duration</h2>
-        <div className="entryArea">
-          <input type="text" className="field" ref={start} required />
-          <div className="input-label">Start Date</div>
-        </div>
-        <div className="entryArea">
-          <input
-            type="text"
-            className="field"
-            ref={end}
-            disabled={currentlyWork}
-            required
-          />
-          <div className="input-label">End Date</div>
-        </div>
+        <InputField labelText={"Start Date"} ref={start} />
+        <InputField labelText={"End Date"} ref={end} disabled={currentlyWork} />
         <div>
           <input
             type="checkbox"

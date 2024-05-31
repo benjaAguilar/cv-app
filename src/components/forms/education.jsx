@@ -16,7 +16,7 @@ function Education({ updateCv }) {
     field: "",
   });
 
-  const [education, setEdu] = useState([]);
+  const [education, setEdu] = useState(userData.education);
   const endStudy = useRef(null);
 
   useEffect(() => {

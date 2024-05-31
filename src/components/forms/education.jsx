@@ -7,9 +7,13 @@ import { v4 as uuidv4 } from "uuid";
 
 function Education() {
   const [inputVals, setVals] = useState({
-    degree: "",
     school: "",
+    schoolLoc: "",
+    graduation: "",
+    degree: "",
+    field: "",
   });
+
   const [education, setEdu] = useState([]);
   const endStudy = useRef(null);
 
@@ -64,11 +68,20 @@ function Education() {
           value={inputVals.school}
           change={(e) => setVals({ ...inputVals, school: e.target.value })}
         />
-        <InputField labelText={"School Location"} />
+        <InputField
+          labelText={"School Location"}
+          value={inputVals.schoolLoc}
+          change={(e) => setVals({ ...inputVals, schoolLoc: e.target.value })}
+        />
       </div>
       <div>
         <h2>Graduation Date</h2>
-        <InputField labelText={"Graduation"} ref={endStudy} />
+        <InputField
+          labelText={"Graduation"}
+          ref={endStudy}
+          value={inputVals.graduation}
+          change={(e) => setVals({ ...inputVals, graduation: e.target.value })}
+        />
       </div>
       <div>
         <h2>Degree and field</h2>
@@ -77,7 +90,11 @@ function Education() {
           value={inputVals.degree}
           change={(e) => setVals({ ...inputVals, degree: e.target.value })}
         />
-        <InputField labelText={"Field of Study"} />
+        <InputField
+          labelText={"Field of Study"}
+          value={inputVals.field}
+          change={(e) => setVals({ ...inputVals, field: e.target.value })}
+        />
         <button onClick={addEdu}>Add education</button>
       </div>
       <div>

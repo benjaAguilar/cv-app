@@ -2,16 +2,21 @@ import InputField from "./inputField";
 import AirDatepicker from "air-datepicker";
 import localeEn from "air-datepicker/locale/en";
 import "air-datepicker/air-datepicker.css";
+import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { userData } from "../userData";
 
-function Work() {
+function Work({ updateCv }) {
   const [currentlyWork, setCurrently] = useState(false);
   const [inputVals, setVals] = useState({
     job: "",
     employer: "",
+    jobDescription: "",
+    startDate: "",
+    endDate: "",
   });
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState(userData.work);
   const start = useRef(null);
   const end = useRef(null);
 
@@ -26,6 +31,16 @@ function Work() {
             month: "long",
           });
         },
+        onSelect({ date }) {
+          setVals((prevVals) => ({
+            ...prevVals,
+            startDate: date.toLocaleString("en", {
+              year: "numeric",
+              day: "2-digit",
+              month: "long",
+            }),
+          }));
+        },
       });
     }
 
@@ -39,6 +54,16 @@ function Work() {
             month: "long",
           });
         },
+        onSelect({ date }) {
+          setVals((prevVals) => ({
+            ...prevVals,
+            endDate: date.toLocaleString("en", {
+              year: "numeric",
+              day: "2-digit",
+              month: "long",
+            }),
+          }));
+        },
       });
     }
   }, []);
@@ -46,24 +71,38 @@ function Work() {
   function addJob() {
     if (inputVals.job === "" || inputVals.employer === "") return null;
 
-    setJobs([
+    const updatedJobs = [
       ...jobs,
       {
-        name: inputVals.job,
+        job: inputVals.job,
         employer: inputVals.employer,
+        jobDescription: inputVals.jobDescription,
+        startDate: inputVals.startDate,
+        endDate: inputVals.endDate,
         id: uuidv4(),
       },
-    ]);
+    ];
+
+    setJobs(updatedJobs);
 
     setVals({
       job: "",
       employer: "",
+      jobDescription: "",
+      startDate: "",
+      endDate: "",
     });
+
+    userData.work = updatedJobs;
+    updateCv({ ...userData, work: updatedJobs });
   }
 
   function delJob(delId) {
     const filteredJobs = jobs.filter((job) => job.id !== delId);
     setJobs(filteredJobs);
+    userData.work = filteredJobs;
+
+    updateCv({ ...userData, work: filteredJobs });
   }
 
   return (
@@ -84,12 +123,31 @@ function Work() {
       <div>
         <h2>Job Description</h2>
         <div className="area-detail">describe your ocupation</div>
-        <textarea id="" cols="30" rows="10"></textarea>
+        <textarea
+          id=""
+          cols="30"
+          rows="10"
+          value={inputVals.jobDescription}
+          onChange={(e) => {
+            setVals({ ...inputVals, jobDescription: e.target.value });
+          }}
+        ></textarea>
       </div>
       <div>
         <h2>Duration</h2>
-        <InputField labelText={"Start Date"} ref={start} />
-        <InputField labelText={"End Date"} ref={end} disabled={currentlyWork} />
+        <InputField
+          labelText={"Start Date"}
+          value={inputVals.startDate}
+          change={(e) => setVals({ ...inputVals, startDate: e.target.value })}
+          ref={start}
+        />
+        <InputField
+          labelText={"End Date"}
+          value={inputVals.endDate}
+          change={(e) => setVals({ ...inputVals, endDate: e.target.value })}
+          ref={end}
+          disabled={currentlyWork}
+        />
         <div>
           <input
             type="checkbox"
@@ -110,7 +168,7 @@ function Work() {
             return (
               <div key={job.id}>
                 <p>
-                  {job.name}, {job.employer}
+                  {job.job}, {job.employer}
                 </p>
                 <button onClick={() => delJob(job.id)}>del</button>
               </div>
@@ -121,5 +179,9 @@ function Work() {
     </div>
   );
 }
+
+Work.propTypes = {
+  updateCv: PropTypes.func.isRequired,
+};
 
 export default Work;

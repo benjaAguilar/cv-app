@@ -2,10 +2,12 @@ import InputField from "./inputField";
 import AirDatepicker from "air-datepicker";
 import localeEn from "air-datepicker/locale/en";
 import "air-datepicker/air-datepicker.css";
+import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { userData } from "../userData";
 
-function Education() {
+function Education({ updateCv }) {
   const [inputVals, setVals] = useState({
     school: "",
     schoolLoc: "",
@@ -32,6 +34,16 @@ function Education() {
             };
           }
         },
+        onSelect({ date }) {
+          setVals((prevVals) => ({
+            ...prevVals,
+            graduation: date.toLocaleString("en", {
+              year: "numeric",
+              day: "2-digit",
+              month: "long",
+            }),
+          }));
+        },
       });
     }
   }, []);
@@ -39,24 +51,35 @@ function Education() {
   function addEdu() {
     if (inputVals.degree === "" || inputVals.school === "") return null;
 
-    setEdu([
+    const updatedEdu = [
       ...education,
       {
-        degree: inputVals.degree,
         school: inputVals.school,
+        schoolLoc: inputVals.schoolLoc,
+        graduation: inputVals.graduation,
+        degree: inputVals.degree,
+        field: inputVals.field,
         id: uuidv4(),
       },
-    ]);
+    ];
+
+    setEdu(updatedEdu);
 
     setVals({
       degree: "",
       school: "",
     });
+
+    userData.education = updatedEdu;
+
+    updateCv({ ...userData, education: updatedEdu });
   }
 
   function delEdu(delId) {
     const filteredEdu = education.filter((edu) => edu.id !== delId);
     setEdu(filteredEdu);
+    userData.education = filteredEdu;
+    updateCv({ ...userData, education: filteredEdu });
   }
 
   return (
@@ -115,5 +138,9 @@ function Education() {
     </div>
   );
 }
+
+Education.propTypes = {
+  updateCv: PropTypes.func.isRequired,
+};
 
 export default Education;

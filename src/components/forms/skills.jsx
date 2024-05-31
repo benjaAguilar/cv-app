@@ -1,27 +1,38 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import InputField from "./inputField";
 import { v4 as uuidv4 } from "uuid";
+import { userData } from "../userData";
 
-function Skills() {
-  const [skills, setSkills] = useState([]);
+function Skills({ updateCv }) {
+  const [skills, setSkills] = useState(userData.skills);
   const [value, setValue] = useState("");
 
   function addSkill() {
     if (value === "") return null;
 
-    setSkills([
+    const updatedSkills = [
       ...skills,
       {
         name: value,
         id: uuidv4(),
       },
-    ]);
+    ];
+
+    setSkills(updatedSkills);
     setValue("");
+
+    userData.skills = updatedSkills;
+
+    updateCv({ ...userData, skills: updatedSkills });
   }
 
   function delSkill(delId) {
     const filteredSkills = skills.filter((skill) => skill.id !== delId);
     setSkills(filteredSkills);
+    userData.skills = filteredSkills;
+
+    updateCv({ ...userData, skills: filteredSkills });
   }
 
   return (
@@ -54,5 +65,9 @@ function Skills() {
     </div>
   );
 }
+
+Skills.propTypes = {
+  updateCv: PropTypes.func.isRequired,
+};
 
 export default Skills;

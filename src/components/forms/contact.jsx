@@ -1,16 +1,10 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import InputField from "./inputField";
+import { userData } from "../userData";
 
-function Contact() {
-  const [contactData, setData] = useState({
-    name: "",
-    surename: "",
-    email: "",
-    phone: "",
-    city: "",
-    state: "",
-    zipCode: "",
-  });
+function Contact({ updateCv }) {
+  const [contactData, setData] = useState(userData);
 
   return (
     <div className="form-fields">
@@ -19,12 +13,20 @@ function Contact() {
         <InputField
           labelText={"Name"}
           value={contactData.name}
-          change={(e) => setData({ ...contactData, name: e.target.value })}
+          change={(e) => {
+            setData({ ...contactData, name: e.target.value });
+            updateCv({ ...contactData, name: e.target.value });
+            userData.name = e.target.value;
+          }}
         />
         <InputField
           labelText={"Sure Name"}
           value={contactData.surename}
-          change={(e) => setData({ ...contactData, surename: e.target.value })}
+          change={(e) => {
+            setData({ ...contactData, surename: e.target.value });
+            updateCv({ ...contactData, surename: e.target.value });
+            userData.surename = e.target.value;
+          }}
         />
       </div>
       <div>
@@ -33,13 +35,21 @@ function Contact() {
           type={"email"}
           labelText={"Email"}
           value={contactData.email}
-          change={(e) => setData({ ...contactData, email: e.target.value })}
+          change={(e) => {
+            setData({ ...contactData, email: e.target.value });
+            updateCv({ ...contactData, email: e.target.value });
+            userData.email = e.target.value;
+          }}
         />
         <InputField
           type={"number"}
           labelText={"Phone"}
           value={contactData.phone}
-          change={(e) => setData({ ...contactData, phone: e.target.value })}
+          change={(e) => {
+            setData({ ...contactData, phone: e.target.value });
+            updateCv({ ...contactData, phone: e.target.value });
+            userData.phone = e.target.value;
+          }}
         />
       </div>
       <div>
@@ -47,22 +57,38 @@ function Contact() {
         <InputField
           labelText={"City"}
           value={contactData.city}
-          change={(e) => setData({ ...contactData, city: e.target.value })}
+          change={(e) => {
+            setData({ ...contactData, city: e.target.value });
+            updateCv({ ...contactData, city: e.target.value });
+            userData.city = e.target.value;
+          }}
         />
         <InputField
           labelText={"State"}
           value={contactData.state}
-          change={(e) => setData({ ...contactData, state: e.target.value })}
+          change={(e) => {
+            setData({ ...contactData, state: e.target.value });
+            updateCv({ ...contactData, state: e.target.value });
+            userData.state = e.target.value;
+          }}
         />
         <InputField
           type={"number"}
           labelText={"Zip Code"}
           value={contactData.zipCode}
-          change={(e) => setData({ ...contactData, zipCode: e.target.value })}
+          change={(e) => {
+            setData({ ...contactData, zipCode: e.target.value });
+            updateCv({ ...contactData, zipCode: e.target.value });
+            userData.number = e.target.value;
+          }}
         />
       </div>
     </div>
   );
 }
+
+Contact.propTypes = {
+  updateCv: PropTypes.func.isRequired,
+};
 
 export default Contact;

@@ -4,46 +4,62 @@ import Summary from "./forms/summary";
 import Skills from "./forms/skills";
 import Work from "./forms/work";
 import Education from "./forms/education";
+import Cv from "./cv";
+import { userData } from "./userData";
 
 function CvSection() {
-  const [formSection, setFormSection] = useState("contact");
-  console.log(formSection);
-  const Form = () => {
-    switch (formSection) {
-      case "contact":
-        return <Contact />;
-      case "summary":
-        return <Summary />;
-      case "skills":
-        return <Skills />;
-      case "work":
-        return <Work />;
-      case "education":
-        return <Education />;
-      default:
-        break;
-    }
-  };
+  const [formSection, setFormSection] = useState(
+    <Contact updateCv={(data) => setData(data)} />
+  );
+  const [data, setData] = useState(userData);
 
   return (
     <div className="make-cv">
       <nav className="navbar">
         <ul className="ul-nav">
-          <li className="li-top" onClick={() => setFormSection("contact")}>
+          <li
+            className="li-top"
+            onClick={() =>
+              setFormSection(<Contact updateCv={(data) => setData(data)} />)
+            }
+          >
             Contact
           </li>
-          <li onClick={() => setFormSection("summary")}>Summary</li>
-          <li onClick={() => setFormSection("skills")}>Skills</li>
-          <li onClick={() => setFormSection("work")}>Work History</li>
-          <li className="li-bottom" onClick={() => setFormSection("education")}>
+          <li
+            onClick={() =>
+              setFormSection(<Summary updateCv={(data) => setData(data)} />)
+            }
+          >
+            Summary
+          </li>
+          <li
+            onClick={() =>
+              setFormSection(<Skills updateCv={(data) => setData(data)} />)
+            }
+          >
+            Skills
+          </li>
+          <li
+            onClick={() =>
+              setFormSection(<Work updateCv={(data) => setData(data)} />)
+            }
+          >
+            Work History
+          </li>
+          <li
+            className="li-bottom"
+            onClick={() =>
+              setFormSection(<Education updateCv={(data) => setData(data)} />)
+            }
+          >
             Education
           </li>
         </ul>
       </nav>
-      <div className="formSection">
-        <Form />
+      <div className="formSection">{formSection}</div>
+      <div className="cvContainer">
+        <Cv {...data} />
       </div>
-      <div className="cvContainer"></div>
     </div>
   );
 }

@@ -14,7 +14,7 @@ function Cv({
   education,
 }) {
   return (
-    <>
+    <div className="a4">
       <div className="cv-head">
         <div className="logo">
           <h3>{name}</h3>
@@ -47,45 +47,43 @@ function Cv({
           </ul>
         </div>
       </div>
-      <div className="cv-main">
-        <div className="cv-summary">
-          <h2>Summary</h2>
-          <p>{summary}</p>
-        </div>
-        <div className="cv-work">
-          <h2>Work Experience</h2>
-          {work.map((work) => {
-            return (
-              <div key={work.id}>
-                <h3>
-                  {work.job}, {work.employer}
-                </h3>
-                <p>{work.jobDescription}</p>
-                <h4>
-                  {work.startDate} - {work.endDate}
-                </h4>
-              </div>
-            );
-          })}
-        </div>
-        <div className="cv-edu">
-          <h2>Education</h2>
-          {education.map((edu) => {
-            return (
-              <div key={edu.id}>
-                <h3>
-                  {edu.degree}, {edu.field}
-                </h3>
-                <p>
-                  {edu.school}, {edu.schoolLoc}
-                </p>
-                <h4>{edu.graduation}</h4>
-              </div>
-            );
-          })}
-        </div>
+      <div className="cv-summary">
+        <h2>Summary</h2>
+        <p>{summary}</p>
       </div>
-    </>
+      <div className="cv-work">
+        <h2>Work Experience</h2>
+        {work.map((work) => {
+          return (
+            <div key={work.id}>
+              <h3>
+                {work.job}, {work.employer}
+              </h3>
+              <p>{work.jobDescription}</p>
+              <h4>
+                {work.startDate} - {work.endDate}
+              </h4>
+            </div>
+          );
+        })}
+      </div>
+      <div className="cv-edu">
+        <h2>Education</h2>
+        {education.map((edu) => {
+          return (
+            <div key={edu.id}>
+              <h3>
+                {edu.degree}, {edu.field}
+              </h3>
+              <p>
+                {edu.school}, {edu.schoolLoc}
+              </p>
+              <h4>{edu.graduation}</h4>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 

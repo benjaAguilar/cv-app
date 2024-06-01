@@ -1,0 +1,54 @@
+.cvContainer{
+    width: 105mm;
+    height: 148.5mm;
+    overflow: hidden;
+    position: relative;
+    justify-self: center;
+    align-self: center;
+}
+
+.a4{
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
+    grid-template-rows: repeat(5, 1fr);
+    gap: 2rem;
+    background-color: aliceblue;
+    min-width: 210mm;
+    height: 297mm;
+    transform-origin: top left;
+    transform: scale(0.5);
+}
+
+.cvContainer h2{
+    font-weight: bold;
+
+}
+
+.cv-head{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-column: 1 / 6;
+    background-color: cadetblue;
+    padding: 2rem;
+}
+
+.cv-aside{
+    grid-column: 5;
+    grid-row: 2 / 6;
+    padding: 2rem;
+    background-color: cadetblue;
+}
+
+.cv-summary, .cv-edu, .cv-work{
+    grid-column: 1 / 5;
+    padding-left: 2rem;
+}
+
+.cv-summary h2, .cv-edu h2, .cv-work h2{
+    background-color: cadetblue;
+    min-width: 50%;
+    padding: 0.5rem;
+    font-weight: bold;
+}

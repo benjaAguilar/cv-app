@@ -66,8 +66,9 @@ textarea{
     justify-content: center;
     align-items: center;
     background-color: aliceblue;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 0.75rem;
+    min-height: 95%;
 }
 
 .skill-adder button{

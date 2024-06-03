@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { userData } from "../userData";
+import delLogo from "../../assets/del.svg";
 
 function Work({ updateCv }) {
   const [currentlyWork, setCurrently] = useState(false);
@@ -106,7 +107,7 @@ function Work({ updateCv }) {
   }
 
   return (
-    <div className="form-fields">
+    <div className="form-fields work-field">
       <div>
         <h2>Job Info</h2>
         <InputField
@@ -133,7 +134,7 @@ function Work({ updateCv }) {
           }}
         ></textarea>
       </div>
-      <div>
+      <div className="duration-field">
         <h2>Duration</h2>
         <InputField
           labelText={"Start Date"}
@@ -161,16 +162,18 @@ function Work({ updateCv }) {
         </div>
         <button onClick={addJob}>Add job</button>
       </div>
-      <div>
+      <div className="review-field">
         <h2>Jobs review</h2>
         <div className="jobs-visualizer">
           {jobs.map((job) => {
             return (
-              <div key={job.id}>
+              <div key={job.id} className="tag">
                 <p>
                   {job.job}, {job.employer}
                 </p>
-                <button onClick={() => delJob(job.id)}>del</button>
+                <button onClick={() => delJob(job.id)} className="del-btn">
+                  <img src={delLogo} alt="" className="del-logo" />
+                </button>
               </div>
             );
           })}

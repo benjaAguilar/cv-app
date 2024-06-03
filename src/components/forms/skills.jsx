@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import InputField from "./inputField";
 import { v4 as uuidv4 } from "uuid";
 import { userData } from "../userData";
+import delLogo from "../../assets/del.svg";
 
 function Skills({ updateCv }) {
   const [skills, setSkills] = useState(userData.skills);
@@ -36,9 +37,9 @@ function Skills({ updateCv }) {
   }
 
   return (
-    <div className="form-fields">
-      <h2>Skills</h2>
+    <div className="form-fields skills-field">
       <div className="skill-adder">
+        <h2>Skills</h2>
         <InputField
           labelText={"Skills"}
           value={value}
@@ -49,14 +50,15 @@ function Skills({ updateCv }) {
       <div className="skill-visualizer">
         {skills.map((skill) => {
           return (
-            <div key={skill.id}>
+            <div key={skill.id} className="tag">
               <p>{skill.name}</p>
               <button
                 onClick={() => {
                   delSkill(skill.id);
                 }}
+                className="del-btn"
               >
-                del
+                <img src={delLogo} alt="" className="del-logo" />
               </button>
             </div>
           );

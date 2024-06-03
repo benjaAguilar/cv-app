@@ -7,7 +7,7 @@ function Contact({ updateCv }) {
   const [contactData, setData] = useState(userData);
 
   return (
-    <div className="form-fields">
+    <div className="form-fields contact-field">
       <div>
         <h2>Your Name</h2>
         <InputField
@@ -52,7 +52,7 @@ function Contact({ updateCv }) {
           }}
         />
       </div>
-      <div>
+      <div className="location-field">
         <h2>Location</h2>
         <InputField
           labelText={"City"}

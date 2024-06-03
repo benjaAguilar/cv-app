@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { userData } from "../userData";
+import delLogo from "../../assets/del.svg";
 
 function Education({ updateCv }) {
   const [inputVals, setVals] = useState({
@@ -83,7 +84,7 @@ function Education({ updateCv }) {
   }
 
   return (
-    <div className="form-fields">
+    <div className="form-fields edu-field">
       <div>
         <h2>School</h2>
         <InputField
@@ -106,7 +107,7 @@ function Education({ updateCv }) {
           change={(e) => setVals({ ...inputVals, graduation: e.target.value })}
         />
       </div>
-      <div>
+      <div className="degree-field">
         <h2>Degree and field</h2>
         <InputField
           labelText={"Degree"}
@@ -120,16 +121,18 @@ function Education({ updateCv }) {
         />
         <button onClick={addEdu}>Add education</button>
       </div>
-      <div>
+      <div className="review-field">
         <h2>Education Review</h2>
         <div className="edu-visualizer">
           {education.map((edu) => {
             return (
-              <div key={edu.id}>
+              <div key={edu.id} className="tag">
                 <p>
                   {edu.degree}, {edu.school}
                 </p>
-                <button onClick={() => delEdu(edu.id)}>del</button>
+                <button onClick={() => delEdu(edu.id)} className="del-btn">
+                  <img src={delLogo} alt="" className="del-logo" />
+                </button>
               </div>
             );
           })}

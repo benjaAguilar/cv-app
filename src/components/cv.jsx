@@ -61,7 +61,8 @@ function Cv({
               </h3>
               <p>{work.jobDescription}</p>
               <h4>
-                {work.startDate} - {work.endDate}
+                {work.startDate} -{" "}
+                {work.endDate === "" ? "Current" : work.endDate}
               </h4>
             </div>
           );

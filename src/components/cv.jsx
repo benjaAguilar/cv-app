@@ -48,18 +48,20 @@ function Cv({
         </div>
       </div>
       <div className="cv-summary">
-        <h2>Summary</h2>
-        <p>{summary}</p>
+        <h2 className="h2-main">Summary</h2>
+        <div dangerouslySetInnerHTML={{ __html: summary }}></div>
       </div>
       <div className="cv-work">
-        <h2>Work Experience</h2>
+        <h2 className="h2-main">Work Experience</h2>
         {work.map((work) => {
           return (
             <div key={work.id}>
               <h3>
                 {work.job}, {work.employer}
               </h3>
-              <p>{work.jobDescription}</p>
+              <div
+                dangerouslySetInnerHTML={{ __html: work.jobDescription }}
+              ></div>
               <h4>
                 {work.startDate} -{" "}
                 {work.endDate === "" ? "Current" : work.endDate}
@@ -69,7 +71,7 @@ function Cv({
         })}
       </div>
       <div className="cv-edu">
-        <h2>Education</h2>
+        <h2 className="h2-main">Education</h2>
         {education.map((edu) => {
           return (
             <div key={edu.id}>

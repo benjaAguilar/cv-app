@@ -154,3 +154,14 @@ textarea{
     transform: rotate(180deg);
     border-color: #e5e5e5;
 }
+
+.quill{
+    margin-top: 1rem;
+}
+
+.current-work{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}

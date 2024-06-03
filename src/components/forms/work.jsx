@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { userData } from "../userData";
 import delLogo from "../../assets/del.svg";
+import ReactQuill from "react-quill";
 
 function Work({ updateCv }) {
   const [currentlyWork, setCurrently] = useState(false);
@@ -106,6 +107,10 @@ function Work({ updateCv }) {
     updateCv({ ...userData, work: filteredJobs });
   }
 
+  const handleChange = (value) => {
+    setVals({ ...inputVals, jobDescription: value });
+  };
+
   return (
     <div className="form-fields work-field">
       <div>
@@ -121,18 +126,9 @@ function Work({ updateCv }) {
           change={(e) => setVals({ ...inputVals, employer: e.target.value })}
         />
       </div>
-      <div>
+      <div className="job-field">
         <h2>Job Description</h2>
-        <div className="area-detail">describe your ocupation</div>
-        <textarea
-          id=""
-          cols="30"
-          rows="10"
-          value={inputVals.jobDescription}
-          onChange={(e) => {
-            setVals({ ...inputVals, jobDescription: e.target.value });
-          }}
-        ></textarea>
+        <ReactQuill value={inputVals.jobDescription} onChange={handleChange} />
       </div>
       <div className="duration-field">
         <h2>Duration</h2>
@@ -149,7 +145,7 @@ function Work({ updateCv }) {
           ref={end}
           disabled={currentlyWork}
         />
-        <div>
+        <div className="current-work">
           <input
             type="checkbox"
             id="current"

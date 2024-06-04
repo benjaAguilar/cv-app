@@ -1,4 +1,7 @@
 import PropTypes from "prop-types";
+import conactIcon from "../assets/contact.svg";
+import locationIcon from "../assets/location.svg";
+import mailIcon from "../assets/mail.svg";
 
 function Cv({
   name,
@@ -28,13 +31,13 @@ function Cv({
           <h2>Contact</h2>
           <ul>
             <li>
-              <img src="" alt="" /> {city}, {state} {zipCode}
+              <img src={locationIcon} alt="" /> {city}, {state} {zipCode}
             </li>
             <li>
-              <img src="" alt="" /> {email}
+              <img src={mailIcon} alt="" /> {email}
             </li>
             <li>
-              <img src="" alt="" /> {phone}
+              <img src={conactIcon} alt="" /> {phone}
             </li>
           </ul>
         </div>

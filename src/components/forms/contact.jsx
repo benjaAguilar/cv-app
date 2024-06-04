@@ -79,7 +79,7 @@ function Contact({ updateCv }) {
           change={(e) => {
             setData({ ...contactData, zipCode: e.target.value });
             updateCv({ ...contactData, zipCode: e.target.value });
-            userData.number = e.target.value;
+            userData.zipCode = e.target.value;
           }}
         />
       </div>

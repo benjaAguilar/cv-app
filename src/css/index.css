@@ -103,6 +103,28 @@ button:focus-visible {
   gap: 3rem;
 }
 
+.icons{
+  position: absolute;
+  left: 3px;
+  z-index: 4;
+  height: 79%;
+  transition: opacity ease 300ms;
+}
+
+.icons ul{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.icons li{
+  margin-top: 2rem;
+}
+
+.navbar:hover .icons{
+  opacity: 0;
+}
+
 .navbar{
   position: absolute;
   left: 0;
@@ -133,6 +155,9 @@ button:focus-visible {
 }
 
 .navbar li{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   list-style: none;
   cursor: pointer;
   padding: 2rem;

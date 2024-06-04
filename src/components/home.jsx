@@ -3,15 +3,21 @@ import PropTypes from "prop-types";
 function Home({ getStarted }) {
   return (
     <div className="getStarted">
-      <h1>Boost your Career with a beautiful CV</h1>
+      <h1>
+        {" "}
+        Boost <span>your Career with a beautiful</span> Curriculum
+      </h1>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-        tincidunt bibendum mattis. Cras nec arcu pretium, auctor massa et,
-        varius enim. Donec ultrices felis a mattis tristique. Sed et elit id
-        arcu tincidunt tempor. Sed aliquam, quam vitae tincidunt venenatis, leo
-        felis dictum nibh, vitae ultrices mauris lectus nec augue.
+        <strong>Create</strong> a proper curriculum and get the job that you
+        desire. <br /> <strong>Customize</strong> the curriculum to your
+        preference and download! <br />
+        <strong>Share</strong> your beautiful curriculum with employers. <br />
+        <strong>its completly free!</strong> what are you waiting for? lets go!
       </p>
       <button onClick={getStarted}>Get Started</button>
+      <a href="https://github.com/benjaAguilar" target="_blank">
+        Created by colorCode :D
+      </a>
     </div>
   );
 }

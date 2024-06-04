@@ -169,7 +169,7 @@ h4{
     width: 100%;
     height: 100%;
     background-color: #52525b80;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(5px);
     position: absolute;
     top: 0;
     left: 0;
@@ -178,7 +178,7 @@ h4{
 .downloading img{
     width: 100px;
     opacity: 0;
-    animation: opa 500ms ease-in-out infinite alternate;
+    animation: opa 400ms ease-in-out infinite alternate;
 }
 
 @keyframes opa {

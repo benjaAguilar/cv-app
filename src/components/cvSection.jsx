@@ -161,7 +161,20 @@ function CvSection() {
           <button className="toolbar-btns" onClick={downloadPdf}>
             <img src={downloadIcon} alt="" />
           </button>
-          <button className="toolbar-btns">
+          <button
+            className="toolbar-btns"
+            onClick={() => {
+              Object.keys(userData).map((keyName) => {
+                if (Array.isArray(userData[keyName])) {
+                  userData[keyName] = [];
+                } else {
+                  userData[keyName] = "";
+                }
+              });
+              setData({ ...userData });
+              setFormSection(<Contact updateCv={(data) => setData(data)} />);
+            }}
+          >
             <img src={trashIcon} alt="" />
           </button>
         </div>

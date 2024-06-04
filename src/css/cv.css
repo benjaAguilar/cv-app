@@ -1,6 +1,15 @@
+:root{
+    --black: #52525b;
+    --cyan: #06b6d4;
+    --lime: #84cc16;
+    --yellow: #eab308;
+}
+
 .cvContainer{
-    width: 105mm;
+    width: 117mm;
     height: 148.5mm;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     position: relative;
     justify-self: center;
@@ -36,7 +45,7 @@
     flex-direction: column;
     justify-content: center;
     grid-column: 1 / 6;
-    background-color: cadetblue;
+    background-color: var(--cyan);
     padding: 2rem;
     color: #f5f5f5;
 }
@@ -45,7 +54,7 @@
     grid-column: 5;
     grid-row: 2 / 6;
     padding: 2rem;
-    background-color: cadetblue;
+    background-color: var(--cyan);
 }
 
 .cv-summary, .cv-edu, .cv-work{
@@ -54,7 +63,7 @@
 }
 
 .h2-main{
-    background-color: cadetblue;
+    background-color: var(--cyan);
     min-width: 50%;
     padding: 0.5rem;
     font-weight: bold;
@@ -119,4 +128,36 @@ h4{
 
 .cv-edu p{
     margin-top: 0.5rem;
+}
+
+.toolbar{
+    align-self: end;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.toolbar ul{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 237px;
+}
+
+.toolbar li{
+    list-style: none;
+    cursor: pointer;
+}
+
+.toolbar img{
+    width: 30px;
+}
+
+.toolbar-btns{
+    padding: 0.3rem;
+}
+
+.toolbar-btns img{
+    width: 20px;
 }

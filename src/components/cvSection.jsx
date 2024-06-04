@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Contact from "./forms/contact";
 import Summary from "./forms/summary";
 import Skills from "./forms/skills";
@@ -6,12 +6,17 @@ import Work from "./forms/work";
 import Education from "./forms/education";
 import Cv from "./cv";
 import { userData } from "./userData";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 import conactIcon from "../assets/contact.svg";
 import summaryIcon from "../assets/summary.svg";
 import skillsIcon from "../assets/skills.svg";
 import workIcon from "../assets/work.svg";
 import eduIcon from "../assets/edu.svg";
+import downloadIcon from "../assets/download.svg";
+import ColorIcon from "../assets/color.svg?react";
+import trashIcon from "../assets/trash.svg";
 
 function CvSection() {
   const [formSection, setFormSection] = useState(
@@ -19,6 +24,31 @@ function CvSection() {
   );
   const [data, setData] = useState(userData);
   const [display, setDisplay] = useState("block");
+  const [color, setColor] = useState("#06b6d4");
+  const currentCv = useRef(null);
+
+  const downloadPdf = async () => {
+    if (currentCv.current) {
+      const content = currentCv.current;
+
+      const scaledPdf = content.style.transform;
+
+      content.style.transform = "scale(2)";
+
+      const createCanavas = await html2canvas(content);
+      const imgPdf = createCanavas.toDataURL("image/png");
+
+      content.style.transform = scaledPdf;
+
+      const pdf = new jsPDF("p", "mm", "a4");
+      const imgProps = pdf.getImageProperties(imgPdf);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      pdf.addImage(imgPdf, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("my-cv.pdf");
+    }
+  };
 
   return (
     <div className="make-cv">
@@ -44,6 +74,9 @@ function CvSection() {
           </li>
           <li>
             <img src={eduIcon} alt="" />
+          </li>
+          <li>
+            <img src={downloadIcon} alt="" />
           </li>
         </ul>
       </div>
@@ -91,7 +124,6 @@ function CvSection() {
             Work History
           </li>
           <li
-            className="li-bottom"
             onClick={() =>
               setFormSection(<Education updateCv={(data) => setData(data)} />)
             }
@@ -99,11 +131,40 @@ function CvSection() {
             <img src={eduIcon} alt="" />
             Education
           </li>
+          <li onClick={downloadPdf}>
+            <img src={downloadIcon} alt="" />
+            Download pdf
+          </li>
         </ul>
       </nav>
       <div className="formSection">{formSection}</div>
       <div className="cvContainer">
-        <Cv {...data} />
+        <Cv ref={currentCv} {...data} color={color} />
+        <div className="toolbar">
+          <ul>
+            <li>
+              <ColorIcon fill="#52525b" onClick={() => setColor("#52525b")} />
+            </li>
+            <li>
+              <ColorIcon fill="#06b6d4" onClick={() => setColor("#06b6d4")} />
+            </li>
+            <li>
+              <ColorIcon fill="#84cc16" onClick={() => setColor("#84cc16")} />
+            </li>
+            <li>
+              <ColorIcon fill="#eab308" onClick={() => setColor("#eab308")} />
+            </li>
+            <li>
+              <ColorIcon fill="#db2777" onClick={() => setColor("#db2777")} />
+            </li>
+          </ul>
+          <button className="toolbar-btns" onClick={downloadPdf}>
+            <img src={downloadIcon} alt="" />
+          </button>
+          <button className="toolbar-btns">
+            <img src={trashIcon} alt="" />
+          </button>
+        </div>
       </div>
     </div>
   );

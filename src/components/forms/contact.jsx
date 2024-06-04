@@ -83,6 +83,23 @@ function Contact({ updateCv }) {
           }}
         />
       </div>
+      <div className="clear-btn">
+        <button
+          onClick={() => {
+            Object.keys(userData).map((keyName) => {
+              if (Array.isArray(userData[keyName])) {
+                userData[keyName] = [];
+              } else {
+                userData[keyName] = "";
+              }
+            });
+            setData({ ...userData });
+            updateCv({ ...contactData });
+          }}
+        >
+          Clear template
+        </button>
+      </div>
     </div>
   );
 }

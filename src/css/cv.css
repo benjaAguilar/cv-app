@@ -161,3 +161,32 @@ h4{
 .toolbar-btns img{
     width: 20px;
 }
+
+.downloading{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #52525b80;
+    backdrop-filter: blur(4px);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.downloading img{
+    width: 100px;
+    opacity: 0;
+    animation: opa 500ms ease-in-out infinite alternate;
+}
+
+@keyframes opa {
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}

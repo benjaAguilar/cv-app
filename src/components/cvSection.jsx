@@ -26,11 +26,14 @@ function CvSection() {
   const [display, setDisplay] = useState("block");
   const [color, setColor] = useState("#06b6d4");
   const currentCv = useRef(null);
+  const downloadingScreen = useRef(null);
 
   const downloadPdf = async () => {
     if (currentCv.current) {
       const content = currentCv.current;
+      const downloading = downloadingScreen.current;
 
+      downloading.style.display = "flex";
       const scaledPdf = content.style.transform;
 
       content.style.transform = "scale(2)";
@@ -39,6 +42,7 @@ function CvSection() {
       const imgPdf = createCanavas.toDataURL("image/png");
 
       content.style.transform = scaledPdf;
+      downloading.style.display = "none";
 
       const pdf = new jsPDF("p", "mm", "a4");
       const imgProps = pdf.getImageProperties(imgPdf);
@@ -177,6 +181,11 @@ function CvSection() {
           >
             <img src={trashIcon} alt="" />
           </button>
+        </div>
+        <div className="downloading" ref={downloadingScreen}>
+          <div>
+            <img src={downloadIcon} alt="" />
+          </div>
         </div>
       </div>
     </div>
